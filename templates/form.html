@@ -1,0 +1,13 @@
+
+{% block title %}
+Please fill your details to start your search
+{% endblock title %}
+{% block content %}
+Fill your Library member ID & Personal Details (& select check box if form staff)
+
+<Form method="post",action="">
+    {%  csrf_token %}
+    {{ blank_form.as_p}}
+    <input type="Submit",name="Search",value="Submit"/>
+</Form>
+{% endblock content %}
