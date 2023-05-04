@@ -19,10 +19,10 @@ from django.urls import path
 from second import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", views.home, name="index"),
     path("home", views.home, name="home"),
-    path("list", views.list, name="list"),
-    path("temp", views.temp, name="temp"),
-    path("form", views.forms, name="forms")
+    path("about", views.list, name="about"),
+    path("contact", views.temp, name="temp"),
+    path("form", views.forms, name="contact")
 
 ]
