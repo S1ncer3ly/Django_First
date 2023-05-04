@@ -1,5 +1,8 @@
 import requests
+from django.core.mail import send_mail
 from django.shortcuts import render
+from django.template import RequestContext
+from django.conf import settings
 from .form import my_form
 
 
@@ -17,7 +20,26 @@ def list(request):
 
 
 def temp(request):
-    return render(request, "template 1.html")
+    if request.method == 'POST':
+        # get the form data
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        # send an email
+        send_mail(
+            f"New message from {name} ({email})",
+            message,
+            email,
+            [settings.DEFAULT_FROM_EMAIL],
+            fail_silently=False,
+        )
+
+        # redirect to a success page
+        return render(request, 'success.html')
+
+    # render the contact page template
+    return render(request, 'template 1.html')
 
 
 def forms(request):

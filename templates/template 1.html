@@ -1,16 +1,62 @@
 {%  extends 'index.html' %}
-
+{% load static %}
 {%block one %}
     <html lang="en">
-    <head>
-        <title>Contact Us</title>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-        <body>
-              <h1>  this is Contact us </h1>
-        </body>
+        <head>
+            <title>Contact Us</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+              <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+              <style>
+                .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        input[type=text], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        button[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type=submit]:hover {
+            background-color: #45a049;
+        }
+              body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+              </style>
+              </head>
+    <body>
+        <div class="container">
+            <form action="" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+    
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+    
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </body>
 
     </html>
 {% endblock one %}

@@ -1,10 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <style>
+      body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         .header
         {
             font-size: x-large;
@@ -31,14 +35,39 @@
         padding: 14px 16px;
         text-decoration: none;
       }
-
+      li a, .logo a {
+        line-height: 50px;
+      }
+      .logo a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      .logo a {
+        float: right;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
       li a:hover {
         background-color: #111;
+      }
+      .logo img {
+        height: 50px;
+        padding: 10px;
+        float: left;
+      }
+      footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 8%;
       }
     </style>
 </head>
 <body>
     <ul>
+      <li class="logo"><a href="/home"><img src="https://i.pinimg.com/736x/85/1b/27/851b274d5d6ceca11805b01f66cf0179.jpg" alt="My Logo"></a></li>
       <li><a href="/home">Home</a></li>
       <li><a href="/about">About</a></li>
       <li><a href="/contact">Contact</a></li>
@@ -49,4 +78,8 @@
     <h2>{% block three %}{%  endblock three %}</h2>
     <h2>{% block four %}{%  endblock four %}</h2>
 </body>
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <p>Powered by <a href="Velelog.com" target="_blank">Velelog</a></p>
+</footer> 
 </html>
