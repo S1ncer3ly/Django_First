@@ -1,2 +1,3 @@
-alert("testing is here");
-
+tinymce.init({
+        selector: 'textarea'
+      });

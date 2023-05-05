@@ -19,7 +19,7 @@ class PostAdmin(admin.ModelAdmin):
     list_per_page = 5
 
     class Media:
-        js =('js/script.js',)
+        js =('https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js','js/script.js',)
 
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Post,PostAdmin)
