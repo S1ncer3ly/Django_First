@@ -1,0 +1,37 @@
+{%  extends 'index.html' %}
+{% load static %}
+{% block three %}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!-- Grid -->
+<div class="w3-row">
+
+    <!-- Blog entries -->
+    <div class="w3-col l8 s12">
+        <!-- Blog entry -->
+        <div class="w3-card-4 w3-margin w3-white">
+          <img src="/media/{{post.image}}" alt="Nature" style="width:100%">
+            <div class="w3-container">
+                <h5>{{post.cat.title}}</h5>
+            </div>
+            <div class="w3-container">
+                <p>{{post.content | safe}} </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+{%endblock%}
+{%endblock%}

@@ -23,5 +23,6 @@ urlpatterns = [
     path("home", views.home, name="home"),
     path("about", views.list, name="about"),
     path("contact", views.temp, name="temp"),
-    path("form", views.forms, name="contact")
+    path("form", views.forms, name="contact"),
+    path("<slug:url>",views.post, name="read more")
 ]

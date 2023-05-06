@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 from django.template import RequestContext
 from django.conf import settings
+from second.models import Post
 from .form import my_form
 
 
@@ -12,7 +13,13 @@ def index(request):
 
 
 def home(request):
-    return render(request, "home.html")
+    # Loads Data from POSTS from db(10)
+    posts=Post.objects.all()[:11]
+    #print(post)
+    data={
+        'posts':posts
+    }
+    return render(request, 'home.html',data)
 
 
 def list(request):
@@ -54,3 +61,7 @@ def forms(request):
         print("this is the course id", course_id)
         print("this is status of staff checkbox", chk)
     return render(request, "form.html", {"blank_form": blank_form})
+
+def post(request,url):
+    post=Post.objects.get(url=url)
+    return render(request,'posts.html',{'post':post})
