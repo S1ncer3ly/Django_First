@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 from django.template import RequestContext
 from django.conf import settings
-from second.models import Post
+from second.models import Post,Category
 from .form import my_form
 
 
@@ -15,9 +15,11 @@ def index(request):
 def home(request):
     # Loads Data from POSTS from db(10)
     posts=Post.objects.all()[:11]
+    cats=Category.objects.all()
     #print(post)
     data={
-        'posts':posts
+        'posts':posts,
+        'cats':cats
     }
     return render(request, 'home.html',data)
 
