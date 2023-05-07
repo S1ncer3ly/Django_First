@@ -1,0 +1,48 @@
+{%  extends 'index.html' %}
+{% load static %}
+{% block one %}
+    {%block content%}
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <style>
+            body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        </style>
+
+        <body>
+
+        <!-- Grid -->
+        <div class="w3-row">
+            <!-- Blog entries -->
+            <div class="w3-col l8 s12">
+                <!-- Blog entry -->
+                <div class="w3-card-4 w3-margin w3-white">
+                    <img src="/media/{{cat.image}}" alt="Nature" style="width:100%">
+                    <div class="w3-container">
+                        <h5>{{cat.title}}</h5>
+                    </div>
+                </div>
+                <div class="Collection">
+                    {% for p in posts %}
+                    <a href="/{{p.url}}" class="collection-item">{{ p.title }}<br></a>
+
+                        {% empty %}
+                        <h3>No post yet but something is cooking up</h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        </body>
+        </html>
+
+
+    {%endblock%}
+{%endblock%}

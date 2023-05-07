@@ -16,6 +16,7 @@ Including another URLconf
 """
 # from django.contrib import admin
 from django.urls import path
+from django.urls.converters import SlugConverter
 from second import views
 
 urlpatterns = [
@@ -24,5 +25,6 @@ urlpatterns = [
     path("about", views.list, name="about"),
     path("contact", views.temp, name="temp"),
     path("form", views.forms, name="contact"),
-    path("<slug:url>",views.post, name="read more")
+    path("<slug:url>",views.post, name="read more for posts"),
+    path('category/<slug:url>/', views.categories, name='category'),
 ]

@@ -67,3 +67,8 @@ def forms(request):
 def post(request,url):
     post=Post.objects.get(url=url)
     return render(request,'posts.html',{'post':post})
+
+def categories(request,url):
+    cat=Category.objects.get(url=url)
+    posts = Post.objects.filter(cat=cat)
+    return render(request,'categories.html',{'cat':cat,'posts':posts})

@@ -28,7 +28,7 @@
         padding: 14px 16px;
         text-decoration: none;
       }
-      li a, .logo a {
+      li a, .logo a,button {
         line-height: 50px;
       }
       .logo a:hover {
@@ -56,6 +56,50 @@
         width: 100%;
         height: 8%;
       }
+      .dropdown {
+          margin-top: 15px; /* add some space between the button and the navbar */
+      }
+
+      .dropdown button {
+          line-height: 50px; /* make the button the same height as the navbar */
+          margin: 0; /* remove the default margin */
+          padding: 0 16px; /* add some padding to the button to make it fit */
+          background-color: transparent; /* remove the background color */
+          border: none; /* remove the border */
+          cursor: pointer; /* add a pointer cursor */
+      }
+
+      .dropdown-content {
+          display: none;
+          position: fixed;
+          top: 70px;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 2;
+      }
+
+      .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+          height: 50px; /* Added height to match other navbar items */
+          line-height: 22px; /* Decreased line-height to center text vertically */
+          z-index: 2;
+      }
+
+      .dropdown:hover .dropdown-content {
+          display: block;
+      }
+
+      .dropdown:hover button {
+          background-color: #3e8e41;
+      }
+
+      li:not(.logo):hover {
+          background-color: #111;
+      }
     </style>
 </head>
 <body>
@@ -67,15 +111,12 @@
       <li><a href="/form">Sign In</a></li>
       <li><a href="/admin">Admin Panel</a></li>
     </ul>
-    <h2>{% block one %}{%  endblock one %}</h2>
-    <h2>{% block two %}{%  endblock two %}</h2>
-    <h2>{% block three %}{%  endblock three %}</h2>
-    <h2>{% block four %}{%  endblock four %}</h2>    
+
+
+
 </body>
-<!-- Footer -->
-<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
-    <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
-    <p>Powered by <a href="Velelog.com" target="_blank">Velelog</a></p>
-</footer>
+    <h2>{% block one %}{%  endblock one %}</h2>
+</body>
+
+
 </html>
