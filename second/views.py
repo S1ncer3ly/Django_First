@@ -62,7 +62,7 @@ def forms(request):
         print("this is email_address", email)
         print("this is the course id", course_id)
         print("this is status of staff checkbox", chk)
-    return render(request, "form.html", {"blank_form": blank_form})
+    return render(request, "sign.html", {"blank_form": blank_form})
 
 def post(request,url):
     post=Post.objects.get(url=url)
