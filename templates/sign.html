@@ -25,13 +25,17 @@
     <div class="form login">
         <div class="form-content">
             <header>Login</header>
-            <form action="#">
+                {% if error_message %}
+                    <p class="error-message">{{ error_message }}</p>
+                {% endif %}
+            <form action="{% url 'signin' %}" method="POST">
+                {% csrf_token %} 
                 <div class="field input-field">
-                    <input type="email" placeholder="Email" class="input">
+                    <input type="Username" placeholder="Username" name="username" class="input">
                 </div>
 
                 <div class="field input-field">
-                    <input type="password" placeholder="Password" class="password">
+                    <input type="password" placeholder="Password" name="password" class="password">
                     <i class='bx bx-hide eye-icon'></i>
                 </div>
 
@@ -45,7 +49,7 @@
             </form>
 
             <div class="form-link">
-                <span>Don't have an account? <a href="#" class="link signup-link">Signup</a></span>
+                <span>Don't have an account? <a href="signup">Signup</a></span>
             </div>
         </div>
 

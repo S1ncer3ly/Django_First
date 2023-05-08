@@ -1,9 +1,12 @@
 import requests
 from django.core.mail import send_mail
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import redirect, render,HttpResponse
 from django.template import RequestContext
 from django.conf import settings
 from second.models import Post,Category
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from .form import my_form
 
 
@@ -12,8 +15,38 @@ def index(request):
     return render(request, "index.html")
 
 def signup(request):
+    if request.method=='POST':
+        uname=request.POST.get('uname')
+        email=request.POST.get('email')
+        password=request.POST.get('pass1')
+        cpassword=request.POST.get('pass2')
+
+        if password != cpassword:
+            messages.error(request, "Passwords do not match")
+            return render(request, "signup.html")
+
+        my_user=User.objects.create_user(uname,email,password)
+        my_user.save()
+        print(my_user)
+        messages.success(request, "User has been created successfully")
+        return redirect('signin')
     return render(request,"signup.html")
 
+def signin(request):
+    context = {}
+    if request.method == 'POST':
+        user = request.POST['username'] # Extract email from form data
+        password = request.POST['password'] # Extract password from form data
+
+        user = authenticate(request, username=user, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            context['error_message'] = 'Invalid email or password'
+            return render(request, 'sign.html', context)
+
+    return render(request, 'sign.html', context)
 
 def home(request):
     # Loads Data from POSTS from db(10)
