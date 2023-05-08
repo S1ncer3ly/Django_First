@@ -23,8 +23,9 @@ urlpatterns = [
     path("", views.home, name="index"),
     path("home", views.home, name="home"),
     path("about", views.list, name="about"),
-    path("contact", views.temp, name="temp"),
-    path("form", views.forms, name="contact"),
+    path("contact", views.temp, name="contact us"),
+    path("form", views.forms, name="Sign In"),
+    path("signup",views.signup, name="Sign up"),
     path("<slug:url>",views.post, name="read more for posts"),
     path('category/<slug:url>/', views.categories, name='category'),
 ]

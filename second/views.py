@@ -11,6 +11,9 @@ from .form import my_form
 def index(request):
     return render(request, "index.html")
 
+def signup(request):
+    return render(request,"signup.html")
+
 
 def home(request):
     # Loads Data from POSTS from db(10)
