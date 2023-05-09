@@ -26,6 +26,7 @@ urlpatterns = [
     path("contact", views.temp, name="contact us"),
     path("signin", views.signin, name="signin"),
     path('signup', views.signup, name='signup'),
+    path("logout", views.Logout, name='Logout'),
     path("<slug:url>",views.post, name="read more for posts"),
     path('category/<slug:url>/', views.categories, name='category'),
 ]
