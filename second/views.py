@@ -90,13 +90,8 @@ def temp(request):
     # render the contact page template
     return render(request, 'template 1.html')
 def post(request,url):
-    try:
-        post = get_object_or_404(Post, url=url)
-    except Post.DoesNotExist:
-        # Handle the case where the Post object is not found
-        return render(request, 'post_not_found.html')
-    else:
-        return render(request, 'posts.html', {'post': post})
+    post=Post.objects.get(url=url)
+    return render(request,'posts.html',{'post':post})
 
 def categories(request,url):
     cat=Category.objects.get(url=url)
