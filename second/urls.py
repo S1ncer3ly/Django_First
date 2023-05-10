@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # from django.contrib import admin
-from django.urls import path
+from django.urls import include,path
 from django.urls.converters import SlugConverter
 from second import views
 
@@ -29,4 +29,5 @@ urlpatterns = [
     path("logout", views.Logout, name='Logout'),
     path("<slug:url>",views.post, name="read more for posts"),
     path('category/<slug:url>/', views.categories, name='category'),
+    path('/accounts', include('allauth.urls')),
 ]
