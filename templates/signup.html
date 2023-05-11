@@ -2,6 +2,21 @@
 {% load socialaccount %}
 {% load static %}
 {% block one %}
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
 <!DOCTYPE html>
 <!-- Coding by CodingLab | www.codinglabweb.com-->
 <html lang="en">
@@ -18,7 +33,7 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
-<body>
+<body style="height: 100%">
 <section class="container forms">
 
     <div class="form login">
@@ -28,7 +43,8 @@
                 {% csrf_token %} 
 
                 <div class="field input-field">
-                    <input type="Username" placeholder="Username" name="uname"class="input">
+                    <input type="text" placeholder="Username" name="uname" id="username-input" class="input">
+                    <span id="username-status"></span>
                 </div>
 
                 <div class="field input-field">
@@ -45,7 +61,7 @@
                 </div>
 
                 <div class="field button-field">
-                    <button>Signup</button>
+                    <button id="signup-button"> Signup</button>
                 </div>
             </form>
 
@@ -59,20 +75,25 @@
         <div class="media-options">
             <a href="#" class="field facebook">
                 <i class='bx bxl-facebook facebook-icon'></i>
-                <span>Login with Facebook</span>
+                <span style="font-size: medium" >Login with Facebook</span>
             </a>
         </div>
 
         <div class="media-options">
             <a href="{% provider_login_url 'google' %}" class="field google">
                 <img src="images/google.png" alt="" class="google-img">
-                <span>Login with Google</span>
+                <span style="font-size: medium">Login with Google</span>
             </a>
         </div>
+    </div>
 </section>
 
 <!-- JavaScript -->
 <script src="{% static 'js/sign.js' %}"></script>
+
+
 </body>
+{% block footer %}
+    {% endblock footer %}
 </html>
 {% endblock %}

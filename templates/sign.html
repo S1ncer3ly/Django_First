@@ -62,7 +62,7 @@
         <div class="media-options">
               <a href="{% provider_login_url 'google' prompt='none' process='login' next=request.GET.next|default:'/' %}" class="field google">
                 <img src="images/google.png" alt="" class="google-img">
-                <span>Login with Google</span>
+                <span style="font-size: medium">Login with Google</span>
               </a>
         </div>
 
@@ -72,5 +72,7 @@
 <!-- JavaScript -->
 <script src="{% static 'js/sign.js' %}"></script>
 </body>
+{% block footer %}
+    {% endblock footer %}
 </html>
 {% endblock %}
