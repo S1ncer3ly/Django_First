@@ -1,52 +1,80 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block one %}
-    <html lang="en">
-        <head>
-            <title>About Us</title>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-              <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
-              <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-              <style>
-              body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-              </style>
-              </head>
-        <body>
-              <div class="w3-card-4 w3-margin w3-white">
-                  <div class="w3-padding-48 w3-container">
-                    <h3><b>About Us</b></h3>
-                    <h5>Starting today, <span class="w3-opacity">i.e May 4, 2023</span></h5>
-                  </div>
-                  <div class="w3-container">
-                    <p>Greetings to our readers!
+<html lang="en">
 
-                        We are a team of enthusiastic writers who are passionate about sharing knowledge and interacting with our audience. Our objective is to provide our readers with helpful and valuable content that can enhance their lives in various ways, whether it's through personal growth, professional development, or simply learning something new.
-                        
-                        We take immense pride in the quality of our writing and the depth of our research. Our commitment is to offer precise and up-to-date information that's easy to understand.
-                        
-                        Our blog covers a wide range of topics, from health and wellness to technology and finance. We are continually exploring new ideas and trends to ensure that our readers stay informed.
-                        
-                        We highly appreciate feedback from our readers, and we always encourage them to share their thoughts and opinions with us. Our blog is a community, and we believe that everyone can contribute to its growth.
-                        
-                        Thank you for visiting our blog, and we hope that you find our content informative, captivating, and thought-provoking.</p>
-                    <div class="w3-row">
-                    </div>
-                    </div>
-                </div>
-                    <div class="w3-card-4 w3-margin w3-white">
-                        <div class="w3-container">
-                        <h3><b>Regards</b></h3>
-                    </div>
-                    <div class="w3-container">
-                        <p>Thank you for choosing Vele Log as your source for reliable and informative content. We look forward to helping you expand your knowledge and achieve your goals.</p>
-                        <div class="w3-row">
-                    </div>
-                </div>
-                    </div>
-        </body>
-        
-        {% block footer %}
+<head>
+    <title>About Us</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-card-4 w3-margin w3-white">
+        <div class="w3-padding-48 w3-container">
+            <h3><b>About Us</b></h3>
+            <h5>Starting today, <span class="w3-opacity">i.e May 4, 2023</span></h5>
+        </div>
+        <div class="w3-container">
+            <p style="font-size: large">Greetings to our readers!
+
+                We are a team of enthusiastic writers who are passionate about sharing knowledge and interacting with
+                our audience. Our objective is to provide our readers with helpful and valuable content that can enhance
+                their lives in various ways, whether it's through personal growth, professional development, or simply
+                learning something new.
+
+                We take immense pride in the quality of our writing and the depth of our research. Our commitment is to
+                offer precise and up-to-date information that's easy to understand.
+
+                Our blog covers a wide range of topics, from health and wellness to technology and finance. We are
+                continually exploring new ideas and trends to ensure that our readers stay informed.
+
+                We highly appreciate feedback from our readers, and we always encourage them to share their thoughts and
+                opinions with us. Our blog is a community, and we believe that everyone can contribute to its growth.
+
+                Thank you for visiting our blog, and we hope that you find our content informative, captivating, and
+                thought-provoking.</p>
+            <div class="w3-row">
+            </div>
+        </div>
+    </div>
+    <div class="w3-card-4 w3-margin w3-white">
+        <div class="w3-container">
+            <h3><b>Regards</b></h3>
+            <p style="font-size: large">Thank you for visiting our website and showing interest in our products/services. We value your time and
+                appreciate your support.
+                At Vele Log, we strive to provide the best possible experience for our customers. Our dedicated
+                team works tirelessly to ensure that our products/services meet the highest standards of quality and
+                functionality.
+                We are committed to your satisfaction and aim to exceed your expectations. If you have any questions,
+                concerns, or feedback, please don't hesitate to reach out to us. We value your input and are always here
+                to assist you.
+                As we continue to grow and improve, we would like to express our gratitude for your continued support.
+                It
+                is because of customers like you that we are able to thrive and make a positive impact.
+                Once again, thank you for choosing Vele Log. We look forward to serving you and building a
+                long-lasting relationship.
+                Thank you for choosing Vele Log as your source for reliable and informative content. We look forward to
+                helping you expand your knowledge and achieve your goals.</p>
+        </div>
+
+    </div>
+</body>
+
+{% block footer %}
 {% endblock footer %}
-    </html>
+
+</html>
 {% endblock %}
