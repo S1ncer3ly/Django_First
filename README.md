@@ -1,2 +1,2 @@
 # Django_First
-Just learning django in my college so for the record this is here 
+Its an simple blogging website which can heelp you express maybe
