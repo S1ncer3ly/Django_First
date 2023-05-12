@@ -165,7 +165,7 @@ a.google span{
     color: #232836;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 1000px) {
     .form{
         padding: 20px 10px;
     }

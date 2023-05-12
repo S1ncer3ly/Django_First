@@ -1,139 +1,183 @@
-{%  extends 'index.html' %}
+{% extends 'index.html' %}
 {% load static %}
 {% block one %}
 {%block content%}
 <html>
-   <head>
-      <title>Vele Log</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
-      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
-      <style>
-         body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-      </style>
-   </head>
-   <body class="w3-light-grey">
 
-        <!-- Carousel CATEGORIES  -->
-          <div class="w3-content" style="margin: 0px;padding: 0px;max-width:100%">
-          <div class="card-img-top">
-              <div class="">
+<head>
+   <title>Vele Log</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+   <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+   <style>
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+         font-family: "Raleway", sans-serif
+      }
+
+      @media (max-width: 1000px) and (min-width: 600px) {
+         .owl-nav {
+            display: none !important;
+         }
+
+         .default-div {
+            display: block !important;
+            float: none !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0px !important;
+         }
+      }
+
+      @media (max-width: 600px) {
+
+
+      }
+   </style>
+</head>
+
+<body class="w3-light-grey">
+
+   <!-- Carousel CATEGORIES  -->
+   <div class="w3-content" style="margin: 0px; padding: 0px; max-width:100%">
+      <div class="card-img-top">
+         <div class="">
+            <div class="">
+               <div class="owl-carousel">
+                  {% for cat in cats %}
                   <div class="">
-                      <div class="owl-carousel">
-                         {% for cat in cats %}
-                            <div class="">
-                                  <div class="" style="z-index: -1" >
-                                     <img src="/media/{{cat.image}}" class="responsive-img w3-image" style="z-index: -2" alt="">
-                                  </div>
-                               <div class="">
-                                  <div class="w3-center w3-container w3-light-gray" style="">
-                                     {{cat.title}}
-                                  </div>
-                                  <div class="w3-center w3-container">
-                                     <a href="/category/{{cat.url}}"class="w3-hover-text-light-grey w3-left w3-round-small w3-padding w3-animate-fading w3-button">VIEW</a>
-                                  </div>
-                               </div>
-                            </div>
-                         {% endfor %}
-                      </div>
+                     <div class="" style="z-index: -1">
+                        <img src="/media/{{cat.image}}" class="responsive-img w3-image" style="z-index: -2" alt="">
+                     </div>
+                     <div class="">
+                        <div class="w3-center w3-container w3-light-gray">
+                           {{cat.title}}
+                        </div>
+                        <div class="w3-center w3-container">
+                           <a href="/category/{{cat.url}}"
+                              class="w3-hover-text-light-grey w3-left w3-round-small w3-padding w3-animate-fading w3-button">VIEW</a>
+                        </div>
+                     </div>
                   </div>
-              </div>
-          </div>
-          </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
 
-      <!-- About Card -->
-        <div style="float:right;display: inline-block;  width: 33.33333% ">
+
+   <!-- POSTS COMING UP -->
+   <div class="default-div" style="display: inline-block; padding-left:40px; max-width:65%">
+      <div class="w3-row">
+         {%for p in posts%}
+         <div class="w3-col" style="width: 100%">
+            <div class="w3-card-4 w3-margin w3-white " style="object-fit: cover">
+               <img src="/media/{{p.image}}" alt="Nature" style="width:100%;height: 50%;object-fit: cover">
+               <div class="w3-container">
+                  {{p.content|truncatewords:65| safe}}
+                  <div class="w3-row">
+                     <div class="w3-col m8 s12">
+                        <p><a href="/{{p.url}}"><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         {%endfor%}
+      </div>
+   </div>
+
+   <!-- About Card -->
+   <div class="default-div" style="float:right;  width: 33.33333% ">
       <div class="w3-card w3-margin w3-margin-top">
-      <img src="https://st2.depositphotos.com/42546960/46573/v/450/depositphotos_465738668-stock-illustration-letter-logo-design-vector-template.jpg" style="width:100%">
-        <div class="w3-container w3-white">
-          <h4><b>Vele Log</b></h4>
-          <p>we just love to spread love around the community.We started our  community dedicated for gaming but as we all know.live goes on and on so here we are spreading our love in this field <3</p>
-        </div>
+         <img
+            src="https://st2.depositphotos.com/42546960/46573/v/450/depositphotos_465738668-stock-illustration-letter-logo-design-vector-template.jpg"
+            style="width:100%">
+         <div class="w3-container w3-white">
+            <h4><b>Vele Log</b></h4>
+            <p>we just love to spread love around the community.We started our community dedicated for gaming but as we
+               all know.live goes on and on so here we are spreading our love in this field </p>
+         </div>
       </div>
 
       <!-- Sub Posts -->
       <div class="w3-card w3-margin">
-        <div class="w3-container w3-padding">
-          <h4>Popular Posts</h4>
-        </div>
-        <ul class="w3-ul w3-hoverable w3-white">
-          <li class="w3-padding-16">
-            <img src="https://img.freepik.com/premium-vector/cute-white-cat-cartoon-vector-illustration_42750-808.jpg?w=2000" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-            <span class="w3-large">Post 1</span><br>
-            <span>Something about post 1</span>
-          </li>
-          <li class="w3-padding-16">
-            <img src="https://media.istockphoto.com/id/1097490360/vector/vector-illustration-of-cute-black-cat.jpg?s=170667a&w=0&k=20&c=23PQPwv5BmtsoyHc4ZSYqb0PFLeKgYOCzaruIHgIVQ8=" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-            <span class="w3-large">Post 2</span><br>
-            <span>Something about post 2</span>
-          </li>
-          <li class="w3-padding-16">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/004/218/321/small/cute-cat-white-pet-cartoon-character-free-vector.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-            <span class="w3-large">Post 3</span><br>
-            <span>Something about post 3</span>
-          </li>
-          <li class="w3-padding-16 w3-hide-medium w3-hide-small">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/001/895/553/small/cute-kawaii-gray-kitten-mascot-icon-free-vector.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-            <span class="w3-large">Post 4</span><br>
-            <span>Something about post 4</span>
-          </li>
-        </ul>
+         <div class="w3-container w3-padding">
+            <h4>Popular Posts</h4>
+         </div>
+         <ul class="w3-ul w3-hoverable w3-white">
+            <li class="w3-padding-16">
+               <img
+                  src="https://img.freepik.com/premium-vector/cute-white-cat-cartoon-vector-illustration_42750-808.jpg?w=2000"
+                  alt="Image" class="w3-left w3-margin-right" style="width:50px">
+               <span class="w3-large">Post 1</span><br>
+               <span>Something about post 1</span>
+            </li>
+            <li class="w3-padding-16">
+               <img
+                  src="https://media.istockphoto.com/id/1097490360/vector/vector-illustration-of-cute-black-cat.jpg?s=170667a&w=0&k=20&c=23PQPwv5BmtsoyHc4ZSYqb0PFLeKgYOCzaruIHgIVQ8="
+                  alt="Image" class="w3-left w3-margin-right" style="width:50px">
+               <span class="w3-large">Post 2</span><br>
+               <span>Something about post 2</span>
+            </li>
+            <li class="w3-padding-16">
+               <img
+                  src="https://static.vecteezy.com/system/resources/thumbnails/004/218/321/small/cute-cat-white-pet-cartoon-character-free-vector.jpg"
+                  alt="Image" class="w3-left w3-margin-right" style="width:50px">
+               <span class="w3-large">Post 3</span><br>
+               <span>Something about post 3</span>
+            </li>
+            <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+               <img
+                  src="https://static.vecteezy.com/system/resources/thumbnails/001/895/553/small/cute-kawaii-gray-kitten-mascot-icon-free-vector.jpg"
+                  alt="Image" class="w3-left w3-margin-right" style="width:50px">
+               <span class="w3-large">Post 4</span><br>
+               <span>Something about post 4</span>
+            </li>
+         </ul>
       </div>
-        </div>
-
-      <!-- POSTS COMING UP -->
-      <div style="display: inline-block; padding-left:150px; max-width:65%">
-        <div class="w3-row">
-            {%for p in posts%}
-                <div class="w3-col"style="width: 100%">
-                   <div class="w3-card-4 w3-margin w3-white " style="object-fit: cover">
-                      <img src="/media/{{p.image}}" alt="Nature" style="width:100%;height: 50%;object-fit: cover">
-                      <div class="w3-container">
-                         {{p.content|truncatewords:65| safe}}
-                         <div class="w3-row">
-                            <div class="w3-col m8 s12">
-                               <p><a href="/{{p.url}}"><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></a></p>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-            {%endfor%}
-        </div>
-      </div>
-  </body>
-   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-   <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   </div>
+</body>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
 
 <script>
    $('.owl-carousel').owlCarousel({
-    rtl:true,
-    loop:true,
-    nav:true,
-    responsive:{
-        1000:{
-            items:5,
-            autoplay:true,
-            autoplayTimeout:4000,
-            autoplayHoverPause:true
-        }
-    }
-})
-   $('.play').on('click',function(){
-       owl.trigger('play.owl.autoplay',[1])
+      rtl: true,
+      loop: true,
+      nav: true,
+      responsive: {
+         1000: {
+            items: 5,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true
+         }
+      }
    })
-   $('.stop').on('click',function(){
-       owl.trigger('stop.owl.autoplay')
+   $('.play').on('click', function () {
+      owl.trigger('play.owl.autoplay', [1])
+   })
+   $('.stop').on('click', function () {
+      owl.trigger('stop.owl.autoplay')
    })
 </script>
+
 </html>
 {%endblock%}
 {% endblock %}
