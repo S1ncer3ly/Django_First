@@ -30,7 +30,6 @@ def signup(request):
 
         my_user = User.objects.create_user(uname, email, password)
         my_user.save()
-        print(my_user)
         messages.success(request, "User has been created successfully")
         return redirect('signin')
 
