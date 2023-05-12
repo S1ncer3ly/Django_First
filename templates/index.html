@@ -1,59 +1,75 @@
 {% load static %}
 <html lang="eng">
+
 <head>
-    <title></title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <style>
-      body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-    </style>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: "Raleway", sans-serif
+    }
+
+    @media (max-width: 600px) {
+      
+
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Navbar -->
-<div class="w3-top" style="z-index: 2; position: static">
-  <div class="w3-bar w3-dark-gray w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="/home" class="w3-bar-item w3-button w3-padding-large">Home</a>
-    <a href="/contact" class="w3-bar-item w3-button w3-padding-large ">Contact Us</a>
-    <div class="w3-dropdown-hover ">
-      <button class="w3-padding-large w3-button" title="More">About Us <i class="fa fa-caret-down"></i></button>
-      <div class="w3-dropdown-content w3-bar-block w3-card-4" style="z-index: 3">
-        <a href="/about" class="w3-bar-item w3-button">About</a>
-        <a href="#" class="w3-bar-item w3-button">Team</a>
-        <a href="#" class="w3-bar-item w3-button">Aim</a>
-      </div>
-    </div>
-    {% if user.is_authenticated %}
-        <a href="{% url 'Logout' %}" class="w3-bar-item w3-button w3-padding-large ">Logout</a>
-      {% else %}
-        <a href="/signin" class="w3-bar-item w3-button w3-padding-large ">Sign In</a>
-    {% endif %}
-    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
-  </div>
-</div>
-</body>
-{% block one %}{%  endblock one %}
-{% block footer %}
-<!-- Site footer -->
-    <footer class="w3-container w3-dark-grey w3-padding-16 w3-bottom" style="margin-top: auto; position: static">
-        <hr>
-      </div>
-      <div class="">
-        <div class="">
-          <div class="">
-            <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
-         <a href="#">Velelog</a>.
-            </p>
-          </div>
+  <!-- Navbar -->
+  <div class="w3-top sidenav" style="z-index: 2; position: static">
+    <div class="w3-bar w3-dark-gray w3-card">
+      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
+        onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+      <a href="/contact" class="w3-bar-item w3-button w3-padding-large ">Contact Us</a>
+      <div class="w3-dropdown-hover ">
+        <button class="w3-padding-large w3-button" title="More">About Us <i class="fa fa-caret-down"></i></button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4" style="z-index: 3">
+          <a href="/about" class="w3-bar-item w3-button">About</a>
+          <a href="#" class="w3-bar-item w3-button">Team</a>
+          <a href="#" class="w3-bar-item w3-button">Aim</a>
         </div>
       </div>
+      {% if user.is_authenticated %}
+      <a href="{% url 'Logout' %}" class="w3-bar-item w3-button w3-padding-large ">Logout</a>
+      {% else %}
+      <a href="/signin" class="w3-bar-item w3-button w3-padding-large ">Sign In</a>
+      {% endif %}
+      <a href="javascript:void(0)" class=" w3-hover-red w3-right" style="padding: 15px 30px;"><i
+          class="fa fa-search"></i></a>
+    </div>
+  </div>
+</body>
+{% block one %}{% endblock one %}
+{% block footer %}
+<!-- Site footer -->
+<footer class="w3-container w3-dark-grey w3-padding-16 w3-bottom" style="margin-top: auto; position: static">
+  <hr>
+  </div>
+  <div class="">
+    <div class="">
+      <div class="">
+        <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+          <a href="#">Velelog</a>.
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>
 {% endblock footer %}
 
