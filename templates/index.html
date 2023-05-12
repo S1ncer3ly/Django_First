@@ -17,14 +17,14 @@
 </head>
 <body>
     <!-- Navbar -->
-<div class="w3-top " style="z-index: 2">
+<div class="w3-top" style="z-index: 2; position: static">
   <div class="w3-bar w3-dark-gray w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="/home" class="w3-bar-item w3-button w3-padding-large">Home</a>
     <a href="/contact" class="w3-bar-item w3-button w3-padding-large ">Contact Us</a>
     <div class="w3-dropdown-hover ">
       <button class="w3-padding-large w3-button" title="More">About Us <i class="fa fa-caret-down"></i></button>
-      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+      <div class="w3-dropdown-content w3-bar-block w3-card-4" style="z-index: 3">
         <a href="/about" class="w3-bar-item w3-button">About</a>
         <a href="#" class="w3-bar-item w3-button">Team</a>
         <a href="#" class="w3-bar-item w3-button">Aim</a>
@@ -39,19 +39,17 @@
   </div>
 </div>
 </body>
-    <h2>{% block one %}{%  endblock one %}</h2>
-</body>
-
+{% block one %}{%  endblock one %}
 {% block footer %}
 <!-- Site footer -->
-    <footer class="w3-container w3-dark-grey w3-padding-16 w3-bottom">
+    <footer class="w3-container w3-dark-grey w3-padding-16 w3-bottom" style="margin-top: auto; position: static">
         <hr>
       </div>
       <div class="">
-        <div class="row">
-          <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
-         <a href="#">Scanfcode</a>.
+        <div class="">
+          <div class="">
+            <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+         <a href="#">Velelog</a>.
             </p>
           </div>
         </div>
