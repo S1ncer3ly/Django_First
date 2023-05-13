@@ -25,10 +25,10 @@
             }
         </style>
 
-        <body>
-        <header class="w3-display-container w3-content w3-center" style="max-width:1000px">
-            <img class="w3-image" src="/media/{{ cat.image }}" alt="Me" width="1500" height="600">
-            <div class="w3-display-bottommiddle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+        <body style="background-color: #595858;">
+        <header class=" w3-display-container w3-content w3-center" style="max-width:1000px">
+            <img class="w3-padding-16 w3-image" src="/media/{{ cat.image }}" alt="Me" width="1500" height="600">
+            <div class="w3-display-bottommiddle w3-padding-large w3-wide w3-text-light-grey w3-center">
                 <h1 class=" w3-hide-medium w3-hide-small w3-xxxlarge">{{ cat.title }}</h1>
             </div>
         </header>
@@ -38,19 +38,19 @@
             <!-- Blog entries -->
             <div class="w3-col">
 
-                <div class="w3-row-padding">
+                <div class=" w3-row-padding">
                     {% with my_list|my_lengthrange:2 as filtered_list %}
                         <div class="w3-row-padding">
                             {% for post in posts %}
                                 {% if forloop.counter0|divisibleby:3 %}
                                     <div class="w3-row">
                                 {% endif %}
-                            <div class="w3-third w3-container w3-margin-bottom">
+                            <div class="w3-hover-shadow w3-padding-32 w3-third w3-container ">
                                 <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%"
                                      class="w3-hover-opacity">
                                 <div class="w3-container w3-white">
                                     <p><b>{{ post.title }}</b></p>
-                                    <p>{{ post.description }}</p>
+                                    <p>{{ post.content|truncatewords:10.5| safe}}</p>
                                 </div>
                             </div>
                             {% if forloop.counter|divisibleby:3 or forloop.last %}
