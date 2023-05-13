@@ -1,5 +1,10 @@
 {%  extends 'index.html' %}
-{% load mathfilters %}
+{% load my_filters %}
+{% with my_list|my_lengthrange:"2:5" as filtered_list %}
+    {% for item in filtered_list %}
+        {{ item }}
+    {% endfor %}
+{% endwith %}
 {% load static %}
 {% block one %}
     {%block content%}
@@ -23,58 +28,68 @@
         <img class="w3-image" src="/media/{{cat.image}}" alt="Me" width="1500" height="600">
       <div class="w3-display-bottommiddle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
         <h1 class=" w3-hide-medium w3-hide-small w3-xxxlarge">{{cat.title}}</h1>
-        <h5 class="w3-hide-large" style="white-space:nowrap">JANE DOE</h5>
-        <h3 class="w3-hide-medium w3-hide-small">PHOTOGRAPHER</h3>
       </div>
         </header>
 
         <!-- Grid -->
         <div class="w3-row">
-            <!-- Blog entries -->
-            <div class="w3-col">
-                <!-- Blog entry -->
-                <div class="w3-white" style="display: contents;">
-                    <div class="">
-                        <h2>{{cat.title}}</h2>
+          <!-- Blog entries -->
+          <div class="w3-col">
+
+            <div class="w3-row-padding">
+              {% with my_list|my_lengthrange:2 as filtered_list %}
+              <div class="w3-row-padding">
+                {% for post in posts %}
+                {% if forloop.counter0|divisibleby:3 %}
+                <div class="w3-row">
+                {% endif %}
+                  <div class="w3-third w3-container w3-margin-bottom">
+                    <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">
+                    <div class="w3-container w3-white">
+                      <p><b>{{ post.title }}</b></p>
+                      <p>{{ post.description }}</p>
                     </div>
-                    <div class="">
-                        <h3>{{cat.description}}</h3>
-                    </div>
+                  </div>
+                {% if forloop.counter|divisibleby:3 or forloop.last %}
                 </div>
-
-
-                <div class="w3-row-padding">
-                  {% for post in posts %}
-                  {% if forloop.counter0|sub:"1"|divisibleby:"3" %} //bug is here
-                      <div class="w3-third w3-container w3-margin-bottom">
-                        <img src="/w3images/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">
-                        <div class="w3-container w3-white">
-                          <p><b>{{ post.title }}</b></p>
-                          <p>{{ post.description }}</p>
-                        </div>
-                      </div>
-                    {% endif %}
-
-                    {% if forloop.counter0|divisibleby:"3" %} // bug is here
-                      <div class="w3-third w3-container w3-margin-bottom">
-                        <img src="/w3images/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">
-                        <div class="w3-container w3-white">
-                          <p><b>{{ post.title }}</b></p>
-                          <p>{{ post.description }}</p>
-                        </div>
-                      </div>
-                    {% endif %}
-
-                    {% if forloop.counter0|add:"1"|divisibleby:"3" %} // bug is here
-                      <div class="w3-third w3-container">
-                        <img src="/w3images/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">
-                        <div class="w3-container w3-white">
-                          <p><b>{{ post.title }}</b></p>
-                          <p>{{ post.description }}</p>
-                        </div>
-                      </div>
-                    {% endif %}
-                  {% endfor %}
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+{#                  {% for post in posts %}#}
+{#                  {% if forloop.counter0|sub:"1"|divisibleby:"3" %}#}
+{#                      <div class="w3-third w3-container w3-margin-bottom">#}
+{#                        <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">#}
+{#                        <div class="w3-container w3-white">#}
+{#                          <p><b>{{ post.title }}</b></p>#}
+{#                          <p>{{ post.description }}</p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    {% endif %}#}
+{##}
+{#                    {% if forloop.counter0|divisibleby:"3" %}#}
+{#                      <div class="w3-third w3-container w3-margin-bottom">#}
+{#                        <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">#}
+{#                        <div class="w3-container w3-white">#}
+{#                          <p><b>{{ post.title }}</b></p>#}
+{#                          <p>{{ post.description }}</p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    {% endif %}#}
+{##}
+{#                    {% if forloop.counter0|add:"1"|divisibleby:"3" %}#}
+{#                      <div class="w3-third w3-container">#}
+{#                        <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">#}
+{#                        <div class="w3-container w3-white">#}
+{#                          <p><b>{{ post.title }}</b></p>#}
+{#                          <p>{{ post.description }}</p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    {% endif %}#}
+{#                  {% endfor %}#}
                 </div>
 
 
