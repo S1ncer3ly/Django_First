@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 
+
 # Create your views here.
 def index(request):
     return render(request, "index.html")
@@ -107,4 +108,5 @@ def post(request, url):
 def categories(request, url):
     cat = Category.objects.get(url=url)
     posts = Post.objects.filter(cat=cat)
-    return render(request, 'categories.html', {'cat': cat, 'posts': posts})
+    i = 1
+    return render(request, 'categories.html', {'cat': cat, 'posts': posts, 'i': i})
