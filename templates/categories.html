@@ -1,4 +1,5 @@
 {%  extends 'index.html' %}
+{% load mathfilters %}
 {% load static %}
 {% block one %}
     {%block content%}
@@ -44,7 +45,7 @@
 
                 <div class="w3-row-padding">
                   {% for post in posts %}
-                    {% if forloop.counter0 3 == 1 %}  //bug is here
+                  {% if forloop.counter0|sub:"1"|divisibleby:"3" %} //bug is here
                       <div class="w3-third w3-container w3-margin-bottom">
                         <img src="/w3images/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">
                         <div class="w3-container w3-white">
@@ -54,7 +55,7 @@
                       </div>
                     {% endif %}
 
-                    {% if forloop.counter0 %3 == 1 %} // bug is here
+                    {% if forloop.counter0|divisibleby:"3" %} // bug is here
                       <div class="w3-third w3-container w3-margin-bottom">
                         <img src="/w3images/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">
                         <div class="w3-container w3-white">
@@ -64,7 +65,7 @@
                       </div>
                     {% endif %}
 
-                    {% if forloop.counter0 %3 == 2 or forloop.last %} // bug is here
+                    {% if forloop.counter0|add:"1"|divisibleby:"3" %} // bug is here
                       <div class="w3-third w3-container">
                         <img src="/w3images/{{ post.image }}" alt="{{ post.alt }}" style="width:100%" class="w3-hover-opacity">
                         <div class="w3-container w3-white">
