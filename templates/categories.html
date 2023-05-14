@@ -1,70 +1,78 @@
 {% extends 'index.html' %}
 {% load my_filters %}
 {% with my_list|my_lengthrange:"2:5" as filtered_list %}
-    {% for item in filtered_list %}
-        {{ item }}
-    {% endfor %}
+{% for item in filtered_list %}
+{{ item }}
+{% endfor %}
 {% endwith %}
 {% load static %}
 {% block one %}
-    {% block content %}
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-        <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <style>
-            body, h1, h2, h3, h4, h5 {
-                font-family: "Raleway", sans-serif
-            }
-        </style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-        <body style="background-color: #595858;">
-        <header class=" w3-display-container w3-content w3-center" style="max-width:1000px">
-            <img class="w3-padding-16 w3-image" src="/media/{{ cat.image }}" alt="Me" width="1500" height="600">
-            <div class="w3-display-bottommiddle w3-padding-large w3-wide w3-text-light-grey w3-center">
-                <h1 class=" w3-hide-medium w3-hide-small w3-xxxlarge">{{ cat.title }}</h1>
-            </div>
-        </header>
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: "Raleway", sans-serif
+    }
+</style>
 
-        <!-- Grid -->
-        <div class="w3-row">
-            <!-- Blog entries -->
-            <div class="w3-col">
+<body style="background-color: #595858;">
+    <header class=" w3-display-container w3-content w3-center" style="max-width:1000px">
+        <img class="w3-padding-16 w3-image" src="/media/{{ cat.image }}" alt="Me" width="1500" height="600">
+        <div class="w3-display-bottommiddle w3-padding-large w3-wide w3-text-light-grey w3-center">
+            <h1 class=" w3-hide-medium w3-hide-small w3-xxxlarge">{{ cat.title }}</h1>
+        </div>
+    </header>
 
-                <div class=" w3-row-padding">
-                    {% with my_list|my_lengthrange:2 as filtered_list %}
-                        <div class="w3-row-padding">
-                            {% for post in posts %}
-                                {% if forloop.counter0|divisibleby:3 %}
-                                    <div class="w3-row">
-                                {% endif %}
-                            <div class="w3-hover-shadow w3-padding-32 w3-third w3-container ">
-                                <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%"
-                                     class="w3-hover-opacity">
-                                <div class="w3-container w3-white">
-                                    <p><b>{{ post.title }}</b></p>
-                                    <p>{{ post.content|truncatewords:10.5| safe}}</p>
-                                </div>
-                            </div>
-                            {% if forloop.counter|divisibleby:3 or forloop.last %}
-                                </div>
+    <!-- Grid -->
+    <div class="w3-row">
+        <!-- Blog entries -->
+        <div class="w3-col">
+
+
+            <div class=" w3-row-padding">
+                {% with my_list|my_lengthrange:2 as filtered_list %}
+                    <div class="w3-row-padding">
+                        {% for post in posts %}
+                            {% if forloop.counter0|divisibleby:3 %}
+                                <div class="w3-row">
                             {% endif %}
-                            {% endfor %}
+                        <div class="w3-hover-shadow w3-padding-32 w3-third w3-container ">
+                            <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%"
+                                 class="w3-hover-opacity">
+                            <div class="w3-container w3-white">
+                                <p><b>{{ post.title }}</b></p>
+                                <p>{{ post.content|truncatewords:10.5| safe}}</p>
+                            </div>
                         </div>
-                    {% endwith %}
-                </div>
+                        {% if forloop.counter|divisibleby:3 or forloop.last %}
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endwith %}
             </div>
         </div>
-        </body>
-        {% block footer %}
-        {% endblock footer %}
-        </html>
-    {% endblock %}
+    </div>
+</body>
+{% block footer %}
+{% endblock footer %}
+
+</html>
+{% endblock %}
 {% endblock %}

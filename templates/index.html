@@ -22,6 +22,20 @@
       font-family: "Raleway", sans-serif
     }
 
+    .search-div {
+      float: right;
+    }
+
+    .search-icon {
+      background-image: url('https://i.imgur.com/6U8I52w.png');
+      display: inline-block;
+      background-size: cover;
+      margin: 7px;
+      padding: 15px;
+      position: relative;
+      right: 10px;
+    }
+
     @media (max-width: 600px) {
       
 
@@ -50,13 +64,16 @@
       {% else %}
       <a href="/signin" class="w3-bar-item w3-button w3-padding-large ">Sign In</a>
       {% endif %}
-      <a href="javascript:void(0)" class=" w3-hover-red w3-right" style="padding: 15px 30px;"><i
-          class="fa fa-search"></i></a>
+      <div class="search-div">
+        <a href="#" class="search-icon"></a>
+
+      </div>
     </div>
   </div>
 </body>
 {% block one %}{% endblock one %}
 {% block footer %}
+
 <!-- Site footer -->
 <footer class="w3-container w3-dark-grey w3-padding-16 w3-bottom" style="margin-top: auto; position: static">
   <hr>
