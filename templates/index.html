@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -22,22 +21,112 @@
       font-family: "Raleway", sans-serif
     }
 
-    .search-div {
-      float: right;
+    .unselectable {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
-    .search-icon {
-      background-image: url('https://i.imgur.com/6U8I52w.png');
-      display: inline-block;
-      background-size: cover;
-      margin: 7px;
-      padding: 15px;
-      position: relative;
-      right: 10px;
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      font-family: "Raleway", sans-serif;
     }
 
-    @media (max-width: 600px) {
-      
+    nav {
+      height: 50px;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0px 50px 0px 20px;
+    }
+
+    nav .logo {
+      font-size: 30px;
+      color: whitesmoke;
+    }
+
+    nav b {
+      color: blueviolet;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0px 5px;
+      padding: 10px 12px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: whitesmoke;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: blueviolet;
+      border-radius: 20px;
+    }
+
+    nav .menubar i {
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #click {
+      display: none;
+    }
+
+    @media (max-width: 940px) {
+      nav .menubar i {
+        display: block;
+      }
+
+      #click:checked~.menubar i::before {
+        content: "\f00d";
+
+      }
+
+      nav ul {
+        position: fixed;
+        top: 50px;
+        left: -100%;
+        background-color: black;
+        height: 100vh;
+        width: 100%;
+        display: block;
+        text-align: center;
+        transition: all 0.5s ease;
+      }
+
+      #click:checked~ul {
+        left: 0;
+      }
+
+      nav ul li {
+        margin: 20px 0px;
+      }
+
+      nav ul li a {
+        font-size: 20px;
+        display: block;
+        font-weight: 600;
+      }
+
+      nav ul li a:hover {
+        color: black;
+      }
 
     }
   </style>
@@ -45,33 +134,27 @@
 
 <body>
   <!-- Navbar -->
-  <div class="w3-top sidenav" style="z-index: 2; position: static">
-    <div class="w3-bar w3-dark-gray w3-card">
-      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
-        onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a href="/home" class="w3-bar-item w3-button w3-padding-large">Home</a>
-      <a href="/contact" class="w3-bar-item w3-button w3-padding-large ">Contact Us</a>
-      <div class="w3-dropdown-hover ">
-        <button class="w3-padding-large w3-button" title="More">About Us <i class="fa fa-caret-down"></i></button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4" style="z-index: 3">
-          <a href="/about" class="w3-bar-item w3-button">About</a>
-          <a href="#" class="w3-bar-item w3-button">Team</a>
-          <a href="#" class="w3-bar-item w3-button">Aim</a>
-        </div>
-      </div>
+  <nav>
+    <div class="logo unselectable"><b>VELE</b>Log</div>
+    <input type="checkbox" id="click">
+    <label for="click" class="menubar">
+      <i class="fa fa-bars"></i>
+    </label>
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/contact">Contact Us</a></li>
+      <li><a href="/contact">Contact Us</a></li>
+      
       {% if user.is_authenticated %}
-      <a href="{% url 'Logout' %}" class="w3-bar-item w3-button w3-padding-large ">Logout</a>
+      <li><a href="{% url 'Logout' %}" class="">Logout</a></li>
       {% else %}
-      <a href="/signin" class="w3-bar-item w3-button w3-padding-large ">Sign In</a>
+      <li><a href="/signin" class="">Sign In</a></li>
       {% endif %}
-      <div class="search-div">
-        <a href="#" class="search-icon"></a>
+    </ul>
 
-      </div>
-    </div>
-  </div>
+  </nav>
 </body>
-{% block one %}{% endblock one %}
+{% block one %}
 {% block footer %}
 
 <!-- Site footer -->
@@ -89,5 +172,6 @@
   </div>
 </footer>
 {% endblock footer %}
+{% endblock one %}
 
 </html>
