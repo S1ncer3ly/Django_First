@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 
-
 # Create your views here.
 def index(request):
     return render(request, "index.html")
@@ -110,3 +109,13 @@ def categories(request, url):
     posts = Post.objects.filter(cat=cat)
     i = 1
     return render(request, 'categories.html', {'cat': cat, 'posts': posts, 'i': i})
+
+
+def latest(request):
+    posts = Post.objects.order_by('-add_date')[:5]  # Retrieve the latest 5 posts based on add_date
+    categories = Category.objects.all()  # Retrieve all categories
+    context = {
+        'posts': posts,
+        'categories': categories
+    }
+    return render(request, 'home.html', context)
