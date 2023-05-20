@@ -11,7 +11,7 @@ class Category(models.Model):
     description = models.TextField()
     url = models.CharField(max_length=100)
     image = models.ImageField(upload_to='Category/')
-    add_date = models.DateTimeField(auto_now_add=True, null = True)
+    add_date = models.DateTimeField(auto_now_add=True, null=True)
 
     def image_tag(self):
         return format_html('<img src="/media/{}"style ="width:40px;height:40px;border-radius:50%"/> '.format(self.image))
@@ -28,6 +28,7 @@ class Post(models.Model):
     url = models.CharField(max_length=200, default='')
     cat = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='post/')
+    add_date = models.DateTimeField(auto_now_add=True, null=False)
     
 
     
