@@ -39,14 +39,16 @@
 
     nav {
       height: 50px;
-      background-color: black;
-      display: flex;
+      background-color: rgb(66, 66, 66);
+      padding-left: 22px;
       align-items: center;
       justify-content: space-between;
-      padding: 0px 50px 0px 20px;
+
+
     }
 
     nav .logo {
+      display: inline-block;
       font-size: 30px;
       color: whitesmoke;
     }
@@ -56,77 +58,121 @@
     }
 
     nav ul {
-      display: flex;
       list-style: none;
+      padding: 0px;
     }
 
     nav ul li {
-      margin: 0px 5px;
-      padding: 10px 12px;
+      display: inline-block;
+      padding-top: 10px;
+    }
+
+    .right-nav {
+      float: right;
+
     }
 
     nav ul li a {
-      text-decoration: none;
-      color: whitesmoke;
+      margin: 15px;
       padding: 10px;
-      transition: all 0.3s ease;
+      color: whitesmoke;
+      text-decoration: none;
     }
 
     nav ul li a:hover {
-      background-color: blueviolet;
-      border-radius: 20px;
+      color: blueviolet;
+      transition: all 0.3s ease-in-out;
+      border-radius: 30px;
     }
 
-    nav .menubar i {
-      color: white;
-      font-size: 22px;
+    nav ul li a img {
+      position: relative;
+      bottom: 2px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: -15px;
+      background-color: #f1f1f1;
+      min-width: 140px;
+      border-radius: 45px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+    }
+
+    label {
+      color: whitesmoke;
+      font-size: 30px;
+      float: right;
+      margin-right: 10px;
+
+    }
+
+    label #btn,
+    label #cancel {
       cursor: pointer;
       display: none;
     }
 
-    #click {
+    #check {
       display: none;
     }
 
-    @media (max-width: 940px) {
-      nav .menubar i {
+    @media (max-width: 770px) {
+      label #btn {
         display: block;
+        float: right;
+        position: relative;
+        top: 8px;
       }
 
-      #click:checked~.menubar i::before {
-        content: "\f00d";
-
-      }
-
-      nav ul {
-        position: fixed;
+      .right-nav {
+        display: block !important;
+        position: absolute;
         top: 50px;
+        right: 0px;
         left: -100%;
-        background-color: black;
-        height: 100vh;
+        background-color: rgb(66, 66, 66);
         width: 100%;
-        display: block;
+        height: 100vh;
         text-align: center;
-        transition: all 0.5s ease;
+        transition: all .5s;
       }
 
-      #click:checked~ul {
-        left: 0;
-      }
-
-      nav ul li {
-        margin: 20px 0px;
-      }
-
-      nav ul li a {
-        font-size: 20px;
+      .right-nav li {
         display: block;
+        margin: 20px;
+        font-size: 20px;
         font-weight: 600;
       }
 
-      nav ul li a:hover {
-        color: black;
+      #check:checked ~ .right-nav {
+        left: 0px;
+
       }
+
 
     }
   </style>
@@ -135,24 +181,43 @@
 <body>
   <!-- Navbar -->
   <nav>
-    <div class="logo unselectable"><b>VELE</b>Log</div>
-    <input type="checkbox" id="click">
-    <label for="click" class="menubar">
-      <i class="fa fa-bars"></i>
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fa fa-bars" id="btn"></i>
+      <i class="fa fa-times" id="cancel"></i>
     </label>
     <ul>
-      <li><a href="/home">Home</a></li>
-      <li><a href="/contact">Contact Us</a></li>
-      <li><a href="/contact">Contact Us</a></li>
-      
-      {% if user.is_authenticated %}
-      <li><a href="{% url 'Logout' %}" class="">Logout</a></li>
-      {% else %}
-      <li><a href="/signin" class="">Sign In</a></li>
-      {% endif %}
-    </ul>
+      <div class="logo unselectable"><b>VELE</b>Log</div>
+      <div class="right-nav">
+        <li class="right-list"><a href="/home">Home</a></li>
+        <li class="right-list"><a href="/contact">Contact Us</a></li>
+        <div class="dropdown">
+          <li class="right-list"><a href="#">About Us</a></li>
+          <div class="dropdown-content">
+            <a href="/about">About</a>
+            <a href="#">Team</a>
+            <a href="#">Aim</a>
+          </div>
 
+        </div>
+        <li class="right-list"><a href="#">Sign In</a></li>
+        <li class="right-list"><a href="#"><img src="https://i.imgur.com/0yRHDdt.png" width="auto" height="30px"></a>
+        </li>
+      </div>
+    </ul>
   </nav>
+  <script>
+    const checkbox = document.getElementById('check');
+    const rightNav = document.querySelector('.right-nav');
+
+    checkbox.addEventListener('change', function () {
+      if (this.checked) {
+        rightNav.style.left = '0';
+      } else {
+        rightNav.style.left = '-100%';
+      }
+    });
+  </script>
 </body>
 {% block one %}
 {% block footer %}
