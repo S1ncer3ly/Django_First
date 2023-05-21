@@ -2,9 +2,15 @@ from django import forms
 from django import views
 from django.core.exceptions import ValidationError
 
+from second.models import Comment
 
-class my_form(forms.Form):
-    name = forms.CharField(label="Your Member_id", max_length=20)
-    email = forms.EmailField(label="Your Email_id")
-    course = forms.CharField(label="You Course_name", max_length=40)
-    check = forms.BooleanField(label="Staff")
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body')
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+        }

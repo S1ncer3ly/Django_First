@@ -1,8 +1,13 @@
+from django.urls import reverse_lazy
+from django.views import View
 from django.core.mail import send_mail
 from django.contrib import messages
-from django.shortcuts import redirect, render, HttpResponse
+from django.shortcuts import redirect, render, get_object_or_404
 from django.conf import settings
-from second.models import Post, Category
+from django.views.generic import CreateView
+
+from second.form import CommentForm
+from second.models import Post, Category, Comment
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -119,3 +124,19 @@ def latest(request):
         'categories': categories
     }
     return render(request, 'home.html', context)
+
+
+class CommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'comment.html'
+
+    def form_valid(self, form):
+        post = get_object_or_404(Post, url=self.kwargs['url'])
+        form.instance.post = post
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('post', kwargs={'url': self.kwargs['url']})
+
+
