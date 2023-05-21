@@ -1,99 +1,90 @@
-{%  extends 'index.html' %}
+{% extends 'index.html' %}
 {% load socialaccount %}
 {% load static %}
 {% block one %}
+    <!DOCTYPE html>
+    <!-- Coding by CodingLab | www.codinglabweb.com-->
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Responsive Login and Signup Form </title>
 
-{% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}{% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-<!DOCTYPE html>
-<!-- Coding by CodingLab | www.codinglabweb.com-->
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Responsive Login and Signup Form </title>
+        <!-- Boxicons CSS -->
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body style="height: 100%">
+    <section class="container forms">
 
-    <!-- Boxicons CSS -->
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <div class="form login">
+            <div class="form-content">
+                <header>Signup</header>
+                <form action="{% url 'signup' %}" method="POST">
+                    {% csrf_token %}
 
-</head>
-<body style="height: 100%">
-<section class="container forms">
+                    <div class="field input-field">
+                        <input type="text" placeholder="Username" name="uname" id="username-input" class="input">
+                        <span id="username-status"></span>
+                    </div>
 
-    <div class="form login">
-        <div class="form-content">
-            <header>Signup</header>
-            <form action="{% url 'signup' %}" method="POST">
-                {% csrf_token %} 
+                    <div class="field input-field">
+                        <input type="email" placeholder="Email" name="email" class="input">
+                    </div>
 
-                <div class="field input-field">
-                    <input type="text" placeholder="Username" name="uname" id="username-input" class="input">
-                    <span id="username-status"></span>
+                    <div class="field input-field">
+                        <input type="password" placeholder="Create password" name="pass1" class="password">
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="password" placeholder="Confirm password" name="pass2" class="password">
+                        <i class='bx bx-hide eye-icon'></i>
+                    </div>
+
+                    <div class="field button-field">
+                        <button id="signup-button"> Signup</button>
+                    </div>
+                </form>
+
+                <div class="form-link">
+                    <span>Already have an account? <a href="/signin">Login</a></span>
                 </div>
+            </div>
 
-                <div class="field input-field">
-                    <input type="email" placeholder="Email" name="email"class="input">
-                </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-                <div class="field input-field">
-                    <input type="password" placeholder="Create password" name="pass1" class="password">
-                </div>
+            <div class="line"></div>
 
-                <div class="field input-field">
-                    <input type="password" placeholder="Confirm password" name="pass2" class="password">
-                    <i class='bx bx-hide eye-icon'></i>
-                </div>
+            <div class="media-options">
+                <a href="#" class="field facebook">
+                    <i class='bx bxl-facebook facebook-icon'></i>
+                    <span style="font-size: medium">Login with Facebook</span>
+                </a>
+            </div>
 
-                <div class="field button-field">
-                    <button id="signup-button"> Signup</button>
-                </div>
-            </form>
-
-            <div class="form-link">
-                <span>Already have an account? <a href="/signin">Login</a></span>
+            <div class="media-options">
+                <a href="{% provider_login_url 'google' %}" class="field google">
+                    <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png"
+                         alt="" class="google-img">
+                    <span style="font-size: medium">Login with Google</span>
+                </a>
             </div>
         </div>
-
-        <div class="line"></div>
-
-        <div class="media-options">
-            <a href="#" class="field facebook">
-                <i class='bx bxl-facebook facebook-icon'></i>
-                <span style="font-size: medium" >Login with Facebook</span>
-            </a>
-        </div>
-
-        <div class="media-options">
-            <a href="{% provider_login_url 'google' %}" class="field google">
-                <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-icon-logo-png-transparent-svg-vector-bie-supply-14.png" alt="" class="google-img">
-                <span style="font-size: medium">Login with Google</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- JavaScript -->
-<script src="{% static 'js/sign.js' %}"></script>
-
-
-</body>
-{% block footer %}
+    </section>
+    <!-- JavaScript -->
+    <script src="{% static 'js/sign.js' %}"></script>
+    </body>
+    {% block footer %}
     {% endblock footer %}
-</html>
+    </html>
 {% endblock %}
