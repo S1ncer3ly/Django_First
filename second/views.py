@@ -23,17 +23,24 @@ def signup(request):
             messages.error(request, "Passwords do not match")
             return render(request, "signup.html")
 
-        # check if the username is already taken
-        if User.objects.filter(username=uname).exists():
-            messages.error(request, "Username already taken. Please choose a different one.")
-            return render(request, "signup.html")
+        # Check if the email is already registered
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email address already registered. Please use a different email.")
+        else:
+            # check if the username is already taken
+            if User.objects.filter(username=uname).exists():
+                messages.error(request, "Username already taken. Please choose a different one.")
+            else:
+                my_user = User.objects.create_user(uname, email, password)
+                my_user.save()
+                messages.success(request, "User has been created successfully")
+                return redirect('signin')
 
-        my_user = User.objects.create_user(uname, email, password)
-        my_user.save()
-        messages.success(request, "User has been created successfully")
-        return redirect('signin')
+    # Retrieve messages and display them only once
+    stored_messages = messages.get_messages(request)
+    render_messages = [message for message in stored_messages]
 
-    return render(request, "signup.html")
+    return render(request, "signup.html", {'messages': render_messages})
 
 
 def signin(request):

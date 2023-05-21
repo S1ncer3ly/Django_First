@@ -96,10 +96,10 @@
                 <ul class="w3-ul w3-hoverable w3-white">
                     {% for post in posts %}
                         <li class="w3-padding-16">
-                            <a href="/{{ post.url }}">
+                            <a href ="/{{ post.url }}" style="text-decoration: none; color: #0a0a0a" >
                             <img src="{{ post.image.url }}" alt="Image" class="w3-left w3-margin-right"
                                  style="width:50px">
-                            <span>{{ post.content|truncatewords:8| safe }}</span>
+                            <span>{{ post.content|truncatewords:10| safe }}</span>
                             </a>
                         </li>
                     {% endfor %}
