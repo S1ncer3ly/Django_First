@@ -17,6 +17,7 @@ Including another URLconf
 # from django.contrib import admin
 from django.urls import include, path
 from second import views
+from second.views import CommentView
 
 urlpatterns = [
     path("", views.home, name="index"),
@@ -26,7 +27,8 @@ urlpatterns = [
     path("signin", views.signin, name="signin"),
     path('signup', views.signup, name='signup'),
     path("logout", views.Logout, name='Logout'),
-    path("<slug:url>",views.post, name="read more for posts"),
+    path("<slug:url>", views.post, name="post"),
     path('category/<slug:url>/', views.categories, name='category'),
     path('accounts/', include('allauth.urls')),
+    path('<slug:url>/comment/', CommentView.as_view(), name='comment'),
 ]
