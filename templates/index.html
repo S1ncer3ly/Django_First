@@ -267,11 +267,10 @@
         </div>
         {% if user.is_authenticated %}
         <li class="right-list"><a href="{% url 'Logout' %}">Logout</a></li>
+        <li class="right-list"><a href="#"><img src="https://i.imgur.com/0yRHDdt.png" width="auto" height="30px"></a></li>
         {% else %}
         <li class="right-list"><a href="/signin">Sign In</a></li>
         {% endif %}
-        <li class="right-list"><a href="#"><img src="https://i.imgur.com/0yRHDdt.png" width="auto" height="30px"></a>
-        </li>
       </div>
     </ul>
   </nav>
