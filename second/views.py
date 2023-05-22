@@ -140,3 +140,5 @@ class CommentView(CreateView):
         return reverse_lazy('post', kwargs={'url': self.kwargs['url']})
 
 
+
+
