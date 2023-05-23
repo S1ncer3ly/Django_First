@@ -112,8 +112,9 @@ def post(request, url):
 def categories(request, url):
     cat = Category.objects.get(url=url)
     posts = Post.objects.filter(cat=cat)
+    latest_categories = Category.objects.order_by('-add_date')[:5]  # Get the latest 5 categories
     i = 1
-    return render(request, 'categories.html', {'cat': cat, 'posts': posts, 'i': i})
+    return render(request, 'categories.html', {'cat': cat, 'posts': posts, 'i': i, 'latest_categories': latest_categories})
 
 
 def latest(request):

@@ -1,80 +1,94 @@
 {% extends 'index.html' %}
 {% load my_filters %}
 {% with my_list|my_lengthrange:"2:5" as filtered_list %}
-{% for item in filtered_list %}
-{{ item }}
-{% endfor %}
+    {% for item in filtered_list %}
+        {{ item }}
+    {% endfor %}
 {% endwith %}
 {% load static %}
 {% block one %}
-{% block content %}
-<!DOCTYPE html>
-<html lang="en">
+    {% block content %}
+        <!DOCTYPE html>
+        <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-        font-family: "Raleway", sans-serif
-    }
-</style>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <style>
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5 {
+                font-family: "Raleway", sans-serif
+            }
+        </style>
 
-<body style="background-color: #595858;">
-    <header class=" w3-display-container w3-content w3-center" style="max-width:1000px">
-        <img class="w3-padding-16 w3-image" src="/media/{{ cat.image }}" alt="Me" width="1500" height="600">
-        <div class="w3-display-bottommiddle w3-padding-large w3-wide w3-text-light-grey w3-center">
-            <h1 class=" w3-hide-medium w3-hide-small w3-xxxlarge">{{ cat.title }}</h1>
-        </div>
-    </header>
-
-    <!-- Grid -->
-    <div class="w3-row">
-        <!-- Blog entries -->
-        <div class="w3-col">
-
-
+        <body style="background-color: lightgrey;">
+        <header class=" w3-display-container w3-content w3-center" style="max-width:1000px">
+            <h1 class=" ">{{ cat.title }}</h1>
+        </header>
+        <!-- Grid -->
+        <div class="w3-col w3-twothird">
             <div class=" w3-row-padding">
                 {% with my_list|my_lengthrange:2 as filtered_list %}
-                    <div class="w3-row-padding">
-                        {% for post in posts %}
-                            {% if forloop.counter0|divisibleby:3 %}
-                                <div class="w3-row">
-                            {% endif %}
+                    {% if posts %}
+                        <div class="w3-row-padding">
+                            {% for post in posts %}
+                                {% if forloop.counter0|divisibleby:3 %}
+                                    <div class="w3-row">
+                                {% endif %}
                             <a href="/{{ post.url }}">
-                        <div class="w3-hover-shadow w3-padding-32 w3-third w3-container ">
-                            <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%"
-                                 class="w3-hover-opacity">
-                            <div class="w3-container w3-white">
-                                <p><b>{{ post.title }}</b></p>
-                                <p>{{ post.content|truncatewords:10.5| safe}}</p>
-                            </div>
-                        </div>
+                                <div class="w3-hover-shadow w3-padding-32 w3-third w3-container">
+                                    <img src="/media/{{ post.image }}" alt="{{ post.alt }}" style="width:100%"
+                                         class="w3-hover-opacity">
+                                    <div class="w3-container w3-white">
+                                        <p><b>{{ post.title }}</b></p>
+                                        <p>{{ post.content|truncatewords:10.5|safe }}</p>
+                                    </div>
+                                </div>
                             </a>
-                        {% if forloop.counter|divisibleby:3 or forloop.last %}
-                            </div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
+                            {% if forloop.counter|divisibleby:3 or forloop.last %}
+                                </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No post yet. But soon there will be a blast.</p>
+                    {% endif %}
                 {% endwith %}
             </div>
         </div>
-    </div>
-</body>
-{% block footer %}
-{% endblock footer %}
+        <!--Latest Categories-->
+        <div class="w3-col w3-third" style="float: right">
+            <div class="w3-card w3-margin">
+                <div class="w3-container w3-padding">
+                    <h4>Latest Categories</h4>
+                </div>
+                <ul class="w3-ul w3-hoverable w3-white">
+                    {% for category in latest_categories %}
+                        <li class="w3-padding-16">
+                            <a href="/category/{{ category.url }}" style="text-decoration: none;color: #0a0a0a">
+                                <img src="{{ category.image.url }}" alt="Image" class="w3-left w3-margin-right"
+                                     style="width:50px">
+                                <span>{{ category.title }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        </body>
+        {% block footer %}
+        {% endblock footer %}
 
-</html>
-{% endblock %}
+        </html>
+    {% endblock %}
 {% endblock %}
