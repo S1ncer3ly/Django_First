@@ -2,319 +2,99 @@
 <html lang="eng">
 
 <head>
-  <title></title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-  <style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      font-family: "Raleway", sans-serif
-    }
+    <title></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="static/css/fontawesome.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        nav {
+            font-family: "Verdana", sans-serif;
+        }
 
-    .unselectable {
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    * {
-      margin: 0px;
-      padding: 0px;
-      box-sizing: border-box;
-      font-family: "Raleway", sans-serif;
-    }
-
-    nav {
-      height: 50px;
-      background-color: rgb(66, 66, 66);
-      padding-left: 22px;
-      align-items: center;
-      justify-content: space-between;
-
-
-    }
-
-    nav .logo {
-      display: inline-block;
-      font-size: 30px;
-      color: whitesmoke;
-    }
-
-    nav b {
-      color: blueviolet;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0px;
-    }
-
-    nav ul li {
-      display: inline-block;
-      padding-top: 10px;
-    }
-
-    .right-nav {
-      float: right;
-
-    }
-
-    nav ul li a {
-      margin: 15px;
-      padding: 10px;
-      color: whitesmoke;
-      text-decoration: none;
-    }
-
-    nav ul li a:hover {
-      color: blueviolet;
-      transition: all 0.3s ease-in-out;
-      border-radius: 30px;
-    }
-
-    nav ul li a img {
-      position: relative;
-      bottom: 2px;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: -15px;
-      background-color: #f1f1f1;
-      min-width: 140px;
-      border-radius: 45px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 10px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: center;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
-    }
-
-    .label-bars {
-      color: whitesmoke;
-      font-size: 30px;
-      float: right;
-      margin-right: 10px;
-
-    }
-
-    label #btn,
-    label #cancel {
-      cursor: pointer;
-      display: none;
-    }
-
-    #check {
-      display: none;
-    }
-
-    @media (max-width: 770px) {
-      label #btn {
-        display: block;
-        float: right;
-        position: relative;
-        top: 8px;
-      }
-
-      .right-nav {
-        display: block !important;
-        position: absolute;
-        top: 50px;
-        right: 0px;
-        left: -100%;
-        background-color: rgb(66, 66, 66);
-        width: 100%;
-        height: 100vh;
-        text-align: center;
-        transition: all .5s;
-        z-index: 1000;
-      }
-
-      .right-nav li {
-        display: block;
-        margin: 20px;
-        font-size: 20px;
-        font-weight: 600;
-      }
-
-      #check:checked~.right-nav {
-        left: 0px;
-
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        right: -135px;
-        top: -10px;
-        background-color: #f1f1f1;
-        min-width: 140px;
-        border-radius: 45px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-      }
-
-
-    }
-
-    footer {
-      background-color: rgb(66, 66, 66);
-      height: 150px;
-      color: whitesmoke;
-    }
-
-    footer h1 {
-      font-size: 20px;
-      text-align: center;
-      color: blueviolet;
-    }
-
-    footer hr {
-      position: relative;
-      top: 20px;
-    }
-
-    footer .unselectable {
-      font-size: 30px;
-    }
-
-    footer b {
-      color: blueviolet;
-    }
-
-    .footer-main {
-      margin: 0px 60px 0px 25px;
-    }
-
-    .left-footer {
-      float: left;
-      margin: 20px 20px 20px 20px;
-    }
-
-    .right-footer {
-      float: right;
-    }
-
-    .right-footer ul {
-      margin: 15px 20px 20px 20px;
-    }
-
-    .right-footer ul li {
-      display: inline-block;
-      font-size: 30px;
-      padding: 0px 20px 0px 20px;
-    }
-
-    .right-footer ul li a {
-      text-decoration: none;
-    }
-  </style>
+        nav ul li {
+            padding-top: 8px;
+        }
+    </style>
 </head>
 
 <body>
-  <!-- Navbar -->
-  <nav>
+<!-- Navbar -->
+<nav>
     <input type="checkbox" id="check">
-    <label  class="label-bars" for="check">
-      <i class="fa fa-bars" id="btn"></i>
-      <i class="fa fa-times" id="cancel"></i>
+    <label class="label-bars" for="check">
+        <i class="fa fa-bars" id="btn"></i>
+        <i class="fa fa-times" id="cancel"></i>
     </label>
     <ul>
-      <div class="logo unselectable"><b>VELE</b>Log</div>
-      <div class="right-nav">
-        <li class="right-list"><a href="/home">Home</a></li>
-        <li class="right-list"><a href="/contact">Contact Us</a></li>
-        <div class="dropdown">
-          <li class="right-list"><a href="#">About Us</a></li>
-          <div class="dropdown-content">
-            <a href="/about">About</a>
-            <a href="#">Team</a>
-            <a href="#">Aim</a>
-          </div>
+        <div class="logo unselectable"><b>VELE</b>Log</div>
+        <div class="right-nav">
+            <li class="right-list"><a href="/home">Home</a></li>
+            <li class="right-list"><a href="/contact">Contact Us</a></li>
+            <div class="dropdown">
+                <li class="right-list"><a href="#">About Us</a></li>
+                <div class="dropdown-content">
+                    <a href="/about">About</a>
+                    <a href="#">Team</a>
+                    <a href="#">Aim</a>
+                </div>
 
+            </div>
+            {% if user.is_authenticated %}
+                <li class="right-list"><a href="{% url 'Logout' %}">Logout</a></li>
+                <li class="right-list"><a href="#"><img src="https://i.imgur.com/0yRHDdt.png " width="auto"
+                                                        height="30px"></a></li>
+            {% else %}
+                <li class="right-list"><a href="/signin">Sign In</a></li>
+            {% endif %}
         </div>
-        {% if user.is_authenticated %}
-        <li class="right-list"><a href="{% url 'Logout' %}">Logout</a></li>
-        <li class="right-list"><a href="#"><img src="https://i.imgur.com/0yRHDdt.png " width="auto" height="30px"></a></li>
-        {% else %}
-        <li class="right-list"><a href="/signin">Sign In</a></li>
-        {% endif %}
-      </div>
     </ul>
-  </nav>
-  <script>
+</nav>
+<script>
     const checkbox = document.getElementById('check');
     const rightNav = document.querySelector('.right-nav');
 
     checkbox.addEventListener('change', function () {
-      if (this.checked) {
-        rightNav.style.left = '0';
-      } else {
-        rightNav.style.left = '-100%';
-      }
+        if (this.checked) {
+            rightNav.style.left = '0';
+        } else {
+            rightNav.style.left = '-100%';
+        }
     });
-  </script>
-  {% block one %}
-  {% endblock %}
+</script>
+{% block one %}
+{% endblock %}
 
 </body>
 {% block footer %}
 
-<!-- Site footer  Razor bosdk yeah tereko krna hai  -->
-<footer>
-  <div class="footer-main">
-    <hr>
-    <div class="left-footer">
-      <div>
-        <p class="unselectable"><b>VELE</b>Log</p>
-        <p>Copyright &#169; 2023 VELELog Inc. All rights reserved</p>
+    <!-- Site footer  -->
+    <footer>
+        <div class="footer-main">
+            <hr>
+            <div class="left-footer">
+                <div>
+                    <p class="unselectable"><b>VELE</b>Log</p>
+                    <p>Copyright &#169; 2023 VELELog Inc. All rights reserved</p>
 
-      </div>
-    </div>
-    <div class="right-footer">
-      <h1>Connect With Us</h1>
-      <ul>
-        <li><a href="#" class="fa fa-github"></a></li>
-        <li><a href="#" class="fa fa-instagram"></a></li>
-        <li><a href="#" class="fa fa-linkedin-square"></a></li>
-        <li><a href="#" class="fa fa-steam-square"></a></li>
-      </ul>
-    </div>
+                </div>
+            </div>
+            <div class="right-footer" style="margin-top: 20px;">
+                <h1>Connect With Us</h1>
+                <ul>
+                    <li><i><a href="#" class="fas fa-google"></a></i></li>
+                    <li><i><a href="#" class="fas fa-github"></a></i></li>
+                    <li><i><a href="#" class="fas fa-linkedin"></a></i></li>
+                    <li><i><a href="#" class="fas fa-steam"></a></i></li>
+                </ul>
+            </div>
 
-  </div>
-</footer>
+        </div>
+    </footer>
 {% endblock footer %}
 
 
