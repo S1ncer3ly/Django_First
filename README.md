@@ -1,2 +1,2 @@
 # Django_First
-Its an simple blogging website which can heelp you express maybe
+Its an simple blogging website which can help you express maybe
