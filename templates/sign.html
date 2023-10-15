@@ -318,16 +318,24 @@
                 <input type="password" placeholder="Confirm password" name="pass2" class="password">
                 <i class='bx bx-hide eye-icon'></i>
             </div>
-
+            <div class="field input-field">
+                {% if messages %}
+                    <ul class="error-message field input-field">
+                        {% for message in messages %}
+                            <p style="font-size: 10px" id="error-message">
+                                {{ message }}
+                            </p>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
             <div class="field button-field">
                 <button id="signup-button"> Signup</button>
             </div>
         </form>
     </div>
     <div class="form-container sign-in-container">
-        {% if error_message %}
-            <p class="error-message">{{ error_message }}</p>
-        {% endif %}
+
         <form action="{% url 'signin' %}" method="POST">
             {% csrf_token %}
             <h1>Sign in</h1>
@@ -347,6 +355,10 @@
                 <input type="password" placeholder="Password" name="password" class="password">
                 <i class='bx bx-hide eye-icon'></i>
             </div>
+
+            {% if error_message %}
+                <p id="error-message" class="error-message">{{ error_message }}</p>
+            {% endif %}
 
             <a href="#">Forgot your password?</a>
             <button>Sign In</button>
@@ -376,13 +388,33 @@
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
 
+    if (localStorage.getItem('panelState') === 'active') {
+        container.classList.add('right-panel-active');
+    }
+
     signUpButton.addEventListener('click', () => {
         container.classList.add("right-panel-active");
+        localStorage.setItem('panelState', 'active');
     });
 
     signInButton.addEventListener('click', () => {
         container.classList.remove("right-panel-active");
+        localStorage.removeItem('panelState');
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Find the error message element by its ID
+        const errorMessage = document.getElementById("error-message");
+        const messages = document.querySelector(".messages");
+
+        // If the error message element exists, hide it after 3 seconds
+        if (errorMessage) {
+            setTimeout(function () {
+                errorMessage.style.display = "none";
+            }, 3000); // 3000 milliseconds = 3 seconds
+        }
+    });
+
 </script>
 
 {% block footer %}

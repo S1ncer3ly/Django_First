@@ -26,19 +26,17 @@ def signup(request):
 
         if password != cpassword:
             messages.error(request, "Passwords do not match")
-            return render(request, "signup.html")
+        elif User.objects.filter(username=uname).exists():
+            messages.error(request, "Username already taken.")
+        elif User.objects.filter(email=email).exists():
+            messages.error(request, "Email address already exists.")
+        else:
+            my_user = User.objects.create_user(uname, email, password)
+            my_user.save()
+            messages.success(request, "User has been created successfully")
+            return redirect('signin')  # Redirect to a different view after successful registration
 
-        # check if the username is already taken
-        if User.objects.filter(username=uname).exists():
-            messages.error(request, "Username already taken. Please choose a different one.")
-            return render(request, "signup.html")
-
-        my_user = User.objects.create_user(uname, email, password)
-        my_user.save()
-        messages.success(request, "User has been created successfully")
-        return redirect('signin')
-
-    return render(request, "signup.html")
+    return render(request, "sign.html")
 
 
 def signin(request):
@@ -114,7 +112,8 @@ def categories(request, url):
     posts = Post.objects.filter(cat=cat)
     latest_categories = Category.objects.order_by('-add_date')[:5]  # Get the latest 5 categories
     i = 1
-    return render(request, 'categories.html', {'cat': cat, 'posts': posts, 'i': i, 'latest_categories': latest_categories})
+    return render(request, 'categories.html',
+                  {'cat': cat, 'posts': posts, 'i': i, 'latest_categories': latest_categories})
 
 
 def latest(request):
@@ -139,7 +138,3 @@ class CommentView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('post', kwargs={'url': self.kwargs['url']})
-
-
-
-
