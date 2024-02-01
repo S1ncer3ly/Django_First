@@ -1,13 +1,13 @@
 from django.urls import reverse_lazy
-from django.views import View
-from django.core.mail import send_mail
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from django.conf import settings
 from django.views.generic import CreateView
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from second.form import CommentForm
-from second.models import Post, Category, Comment
+from second.models import Post, Category, Comment, Contact
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -61,16 +61,45 @@ def Logout(request):
     return redirect('home')
 
 
+
 def home(request):
     # Loads Data from POSTS from db(10)
-    posts = Post.objects.all()[:11]
+    all_posts = Post.objects.all()
+    posts_per_page = 4
+
+    # Create a Paginator instance
+    paginator = Paginator(all_posts, posts_per_page)
+
+    # Get the current page number from the request's GET parameters
+    page = request.GET.get('page')
+
+    try:
+        # Get the Page object for the requested page
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver the first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g., 9999), deliver the last page
+        posts = paginator.page(paginator.num_pages)
+
     cats = Category.objects.all()
-    # print(post)
     data = {
         'posts': posts,
         'cats': cats
     }
     return render(request, 'home.html', data)
+
+# def home(request):
+#     # Loads Data from POSTS from db(10)
+#     posts = Post.objects.all()[:11]
+#     cats = Category.objects.all()
+#     # print(post)
+#     data = {
+#         'posts': posts,
+#         'cats': cats
+#     }
+#     return render(request, 'home.html', data)
 
 
 def list(request):
@@ -79,26 +108,17 @@ def list(request):
 
 def contact(request):
     if request.method == 'POST':
-        # get the form data
+        # Get the form data
         name = request.POST.get('name')
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-
-        # send an email
-        send_mail(
-            f"New message from {name} ({email})",
-            subject,
-            message,
-            email,
-            [settings.DEFAULT_FROM_EMAIL],
-            fail_silently=False,
-        )
-
-        # redirect to a success page
-        return render(request, 'home.html')
-
-    # render the contact page template
+        # Create a new Contact object and save the data
+        contact = Contact(name=name, email=email, subject=subject, body=message)
+        contact.save()
+        # Redirect to a success page (e.g., home.html)
+        return redirect('home')
+    # Render the contact page template
     return render(request, 'contact.html')
 
 

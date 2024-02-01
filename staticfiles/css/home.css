@@ -5,7 +5,7 @@ html {
 *,
 *:before,
 *:after {
-    box-sizing: inherit
+    box-sizing: inherit;
 }
 
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
@@ -16,20 +16,6 @@ html {
 
 body {
     margin: 0
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-menu,
-nav,
-section {
-    display: block
 }
 
 summary {
@@ -217,9 +203,9 @@ textarea {
 /* End extract */
 html,
 body {
-    font-family: Verdana, sans-serif;
+    font-family: "Verdana", sans-serif;
     font-size: 15px;
-    line-height: 1.5
+    line-height: 2
 }
 
 html {
@@ -272,7 +258,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: "Verdana", Arial, sans-serif;
     font-weight: 400;
     margin: 10px 0
 }
@@ -1092,7 +1078,7 @@ a {
 
 .w3-container,
 .w3-panel {
-    padding: 0.01em 16px
+    padding: 2.0em 16px
 }
 
 .w3-panel {
@@ -1458,8 +1444,8 @@ a {
 }
 
 .w3-padding-48 {
-    padding-top: 48px !important;
-    padding-bottom: 48px !important
+    padding-top: 30px !important;
+    padding-bottom: 0 !important
 }
 
 .w3-padding-64 {
@@ -1989,3 +1975,5 @@ a {
 .w3-hover-border-pale-blue:hover {
     border-color: #e7ffff !important
 }
+
+

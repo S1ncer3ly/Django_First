@@ -5,7 +5,7 @@
     <html lang="en">
 
     <head>
-        <title>Contact Form 01</title>
+        <title>Contact Form</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -44,6 +44,7 @@
                                         Your message was sent, thank you!
                                     </div>
                                     <form method="POST" id="contactForm" name="contactForm">
+                                        {% csrf_token %}
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -71,8 +72,7 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="submit" value="Send Message" class="btn btn-primary">
-                                                    <div class="submitting"></div>
+                                                    <input type="submit" class="btn btn-primary">
                                                 </div>
                                             </div>
                                         </div>
@@ -87,7 +87,7 @@
                                             <span class="fa fa-map-marker"></span>
                                         </div>
                                         <div class="text pl-3">
-                                            <p><span>Address:</span>Teri Mummy Baja Du Jaise Dholak</p>
+                                            <p><span>Address:</span>............</p>
                                         </div>
                                     </div>
                                     <div class="dbox w-100 d-flex align-items-center">
@@ -95,7 +95,7 @@
                                             <span class="fa fa-phone"></span>
                                         </div>
                                         <div class="text pl-3">
-                                            <p><span>Phone:</span> <a href="tel://1234567920">+91 6969696969 </a></p>
+                                            <p><span>Phone:</span> <a href="tel://1234567920">+91 8916524567 </a></p>
                                         </div>
                                     </div>
                                     <div class="dbox w-100 d-flex align-items-center">
@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="text pl-3">
                                             <p><span>Email:</span> <a
-                                                    href="mailto:info@yoursite.com">siddharthchodu@gmail.com</a>
+                                                    href="mailto:info@yoursite.com">siddharthchaudhary611@gmail.com</a>
                                             </p>
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
         </div>
     </section>
 
-    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- <script src="{% static 'js/jquery.min.js' %}"></script> -->
     <script src="{% static 'js/popper.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.validate.min.js' %}"></script>
