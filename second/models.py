@@ -45,3 +45,14 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.post.title, self.name)
+    
+# Contact Us
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    subject = models.TextField()
+    body = models.TextField()
+
+    def __str__(self):
+        return self.name
+

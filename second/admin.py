@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import Category, Post, Comment
+from .models import Category, Post, Comment, Contact
 
 # Register your models here.
 
@@ -47,6 +47,17 @@ class CommentAdmin(admin.ModelAdmin):
     delete_selected_comments.short_description = 'Delete selected comments'
 
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['email', 'name']
+    actions = ['delete_selected_Contacts']
+
+    def delete_selected_Contact(self, request, queryset):
+        # Perform the delete operation on selected Contacts
+        queryset.delete()
+
+    delete_selected_Contact.short_description = 'Delete selected Contacts'
+
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
+admin.site.register(Contact, ContactAdmin)
